@@ -5,3 +5,16 @@ entrypoint = "main:app"
 name = "nvda-backend"
 version = "1.0.0"
 requires-python = ">=3.12"
+dependencies = [
+    "fastapi==0.115.6",
+    "python-dotenv==1.0.1",
+    "httpx==0.28.1",
+    "pandas==2.2.3",
+    "numpy==2.2.1",
+    "ta==0.11.0",
+    "redis==5.2.1",
+    "pydantic==2.10.4",
+    "pydantic-settings==2.7.0",
+    "python-dateutil==2.9.0.post0",
+    "deep-translator==1.11.4",
+]
