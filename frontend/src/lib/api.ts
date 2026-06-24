@@ -1,6 +1,7 @@
 import type { DashboardData, PricePanel } from "./types";
+import { getApiUrl } from "./getApiUrl";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+const API_URL = getApiUrl();
 
 export interface LiveData {
   quote: {
@@ -49,4 +50,4 @@ export async function fetchLive(refresh: boolean = false): Promise<LiveData> {
   return res.json();
 }
 
-export { API_URL };
+export { getApiUrl as API_URL };

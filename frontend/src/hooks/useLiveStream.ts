@@ -2,9 +2,12 @@
 
 import { useEffect, useRef, useCallback } from "react";
 import type { ChartPoint, PricePanel } from "@/lib/types";
+import { getApiUrl } from "@/lib/getApiUrl";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
-const WS_URL = API_URL.replace(/^http/, "ws");
+function getWsUrl() {
+  const api = getApiUrl();
+  return api.replace(/^http/, "ws");
+}
 
 export interface LiveTick {
   quote: {
@@ -39,7 +42,7 @@ export function useLiveStream({ onTick, onStatus }: UseLiveStreamOptions) {
   const connect = useCallback(() => {
     if (wsRef.current?.readyState === WebSocket.OPEN) return;
 
-    const ws = new WebSocket(`${WS_URL}/api/ws/live`);
+    const ws = new WebSocket(`${getWsUrl()}/api/ws/live`);
     wsRef.current = ws;
 
     ws.onopen = () => {
